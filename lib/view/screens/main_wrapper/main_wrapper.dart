@@ -1,11 +1,14 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '../../../repositories/dio_client/dio_client.dart';
+import '../../../http/repositories/github_ropository.dart';
+import '../../../model/repo_model.dart';
 import '../../../utils/assets.dart';
 import '../../../utils/extensions/extensions.dart';
 import '../../../utils/app_colors.dart';
 import '../../widgets/custom_app_bar/custom_app_bar.dart';
 import '../../widgets/custom_button.dart';
+import '../../widgets/repository_container.dart';
 import '../../widgets/search_widget.dart';
 
 class MainWrapper extends StatefulWidget {
@@ -16,6 +19,7 @@ class MainWrapper extends StatefulWidget {
 }
 
 class _MainWrapperState extends State<MainWrapper> {
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
@@ -40,15 +44,8 @@ class _MainWrapperState extends State<MainWrapper> {
         child: Column(
           children: [
             SearchWidget(),
+            RepositoryContainer(repoName: '',isFavorite: false,),
 
-           Center(
-             child: FloatingActionButton(
-               onPressed: () {
-                 DioClient().getRepositoriesWithSearch(query: 'edpap7788@gmail.com',);
-               },
-               backgroundColor: Colors.red,
-             ),
-           )
           ],
         ),
       ).paddingOnly(top: 5),

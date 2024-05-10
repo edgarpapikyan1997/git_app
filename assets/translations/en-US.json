@@ -2,6 +2,7 @@
   "search": {
     "searchApp": "Search App",
     "search": "Search",
+    "noDataTyped" : "No Data Typed",
     "searchHistory": "Search History",
     "emptyHistory": "You have empty history.\nClick on search to start journey!",
     "fitReposList": "Github Repos List",
