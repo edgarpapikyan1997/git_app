@@ -44,10 +44,10 @@ extension ThemeDataHelper on ThemeData {
   );
 
   TextStyle get headline4 => const TextStyle(
-    color: AppColors.primaryText,
+    color: AppColors.primaryBlue,
     // fontFamily: FontFamily.Nunito,
-    fontWeight: FontWeight.w400,
-    fontSize: 18,
+    fontWeight: FontWeight.w600,
+    fontSize: 16,
     height: 1.24,
   );
 

@@ -8,10 +8,9 @@ import '../../utils/assets.dart';
 
 class RepositoryContainer extends StatefulWidget {
   final String repoName;
-  final bool isFavorite;
 
   const RepositoryContainer(
-      {super.key, required this.repoName, required this.isFavorite});
+      {super.key, required this.repoName,});
 
   @override
   State<RepositoryContainer> createState() => _RepositoryContainerState();
@@ -24,7 +23,6 @@ class _RepositoryContainerState extends State<RepositoryContainer> {
   @override
   void initState() {
     super.initState();
-    isFavorite = widget.isFavorite;
   }
   @override
   Widget build(BuildContext context) {
@@ -41,18 +39,17 @@ class _RepositoryContainerState extends State<RepositoryContainer> {
           Text(widget.repoName.isEmpty ? "Undefined" : widget.repoName),
           GestureDetector(
             onTap: () {
-
               ///Change to mobx
               setState(() {
                 isFavorite = !isFavorite;
-                print(widget.isFavorite);
+                print(isFavorite);
               });
             },
             child: SizedBox(
               height: 44,
               width: 44,
               child: Assets.favActive.svg(
-                  color: widget.isFavorite
+                  color: isFavorite
                       ? AppColors.primaryBlue
                       : AppColors.placeHolderTextColor),
             ),
