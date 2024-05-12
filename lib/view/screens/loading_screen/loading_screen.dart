@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../utils/app_colors.dart';
+import '../../../utils/app_colors.dart';
 
 class LoadingScreen extends StatelessWidget {
   const LoadingScreen({super.key});
@@ -11,7 +10,7 @@ class LoadingScreen extends StatelessWidget {
       height: double.infinity,
       width: double.infinity,
       color: AppColors.primaryBlue,
-      child: Center(
+      child: const Center(
         child: CircularProgressIndicator(),
       ),
     );

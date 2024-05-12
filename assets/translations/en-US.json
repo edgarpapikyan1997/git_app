@@ -1,0 +1,17 @@
+{
+  "search": {
+    "searchApp": "Search App",
+    "search": "Search",
+    "noDataTyped" : "No Data Typed",
+    "searchHistory": "Search History",
+    "emptyHistory": "You have empty history.\nClick on search to start journey!",
+    "fitReposList": "Github Repos List",
+    "whatWeHaveFound": "What we have found",
+    "whatWeFound": "What We Found",
+    "nothingFound": "Nothing was find for your search.\nPlease check the spelling"
+  },
+  "favorites": {
+    "favReposList": "Favorite Repos List",
+    "noFavorites": "You have no favorites.\nClick on star while searching to add first favorite"
+  }
+}
