@@ -7,6 +7,7 @@ class AppColors {
   static const mainWhite = Color(0xFFF9F9F9);
   static const layerColor = Color(0xFFF2F2F2);
 
+
   /// Accent colors
   static const primaryBlue = Color(0xFF1463F5);
   static const secondaryBlue = Color(0xFFE5EDFF);
