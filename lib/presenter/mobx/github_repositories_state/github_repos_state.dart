@@ -11,8 +11,6 @@ abstract class _GithubReposState with Store {
   @observable
   int number = 0;
 
-  @observable
-  String values = '';
 
   @observable
   List<RepositoryModel> searchResults = [];
@@ -30,13 +28,15 @@ abstract class _GithubReposState with Store {
 
   @action
   void clear() {
-    number = 0;
+    searchResults = [];
   }
 
   @action
   Future<void> searchRepositories(String query) async {
-    var results = await GitHubRepositories().searchRepositories(query);
-    searchResults = results;
-    values = searchResults.toString();
+
+      var results = await GitHubRepositories().searchRepositories(query);
+      searchResults = results;
+      print('LEAST SEARCHED >>>>>>>>>>> $query');
+
   }
 }

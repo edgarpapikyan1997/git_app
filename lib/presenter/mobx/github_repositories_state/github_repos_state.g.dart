@@ -97,6 +97,17 @@ mixin _$GithubReposState on _GithubReposState, Store {
   }
 
   @override
+  void clear() {
+    final _$actionInfo = _$_GithubReposStateActionController.startAction(
+        name: '_GithubReposState.clear');
+    try {
+      return super.clear();
+    } finally {
+      _$_GithubReposStateActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 number: ${number},
