@@ -10,8 +10,10 @@ import '../../../utils/assets.dart';
 
 class SearchWidget extends StatefulWidget {
   final GithubReposState githubReposState;
+  final LoadingState loadingState;
 
-  const SearchWidget({super.key, required this.githubReposState});
+  const SearchWidget(
+      {super.key, required this.githubReposState, required this.loadingState});
 
   @override
   State<SearchWidget> createState() => _SearchWidgetState();
@@ -19,7 +21,6 @@ class SearchWidget extends StatefulWidget {
 
 class _SearchWidgetState extends State<SearchWidget> {
   final TextEditingController searchController = TextEditingController();
-  final LoadingState loadingState = LoadingState();
   FocusNode focusNode = FocusNode();
   Color filledColor = AppColors.layerColor;
 
@@ -29,23 +30,22 @@ class _SearchWidgetState extends State<SearchWidget> {
   }
 
   Future<void> onChangedDuration(String query) async {
-    loadingState.startLoading();
-    print('LOADING STATUS >>>>>>>>>>>>> ${loadingState.isLoading}');
+    widget.loadingState.startLoading();
+    print('LOADING STATUS >>>>>>>>>>>>> ${widget.loadingState.isLoading}');
     if (query.isNotEmpty) {
       await widget.githubReposState.searchRepositories(query);
-      await Future.delayed(const Duration(milliseconds: 300));
-      loadingState.stopLoading();
-      print('LOADING STATUS >>>>>>>>>>>>> ${loadingState.isLoading}');
+      // await Future.delayed(const Duration(milliseconds: 300));
+      widget.loadingState.stopLoading();
+      print('LOADING STATUS >>>>>>>>>>>>> ${widget.loadingState.isLoading}');
     } else {
       widget.githubReposState.clear();
-      loadingState.stopLoading();
-      print('LOADING STATUS >>>>>>>>>>>>> ${loadingState.isLoading}');
+      widget.loadingState.stopLoading();
+      print('LOADING STATUS >>>>>>>>>>>>> ${widget.loadingState.isLoading}');
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Observer(builder: (context) {
       return Column(
         children: [
           TextField(
@@ -105,59 +105,7 @@ class _SearchWidgetState extends State<SearchWidget> {
               ),
             ),
           ),
-          Container(
-            decoration: BoxDecoration(
-                color: AppColors.placeHolderTextColor,
-                borderRadius: BorderRadius.circular(15)),
-            height: loadingState.isLoading
-                ? 50
-                : widget.githubReposState.searchResults.isNotEmpty
-                    ? 600
-                    : 0,
-            child: loadingState.isLoading
-                ? Container(
-                    color: Colors.red,
-                    width: 50,
-                    child: CircularProgressIndicator())
-                : ListView.builder(
-                    physics: const BouncingScrollPhysics(),
-                    itemBuilder: (context, index) {
-                      return Container(
-                        decoration: BoxDecoration(
-                          // color: AppColors.placeHolderTextColor,
-                          borderRadius: BorderRadius.vertical(
-                            top: index == 0
-                                ? Radius.circular(12)
-                                : Radius.circular(0),
-                            bottom: index ==
-                                    widget.githubReposState.searchResults
-                                            .length -
-                                        1
-                                ? Radius.circular(12)
-                                : Radius.circular(0),
-                          ),
-                        ),
-                        height: 55,
-                        width: 100,
-                        child: widget.githubReposState.searchResults.isNotEmpty
-                            ? Text(
-                                widget
-                                    .githubReposState.searchResults[index].name,
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 22,
-                                ),
-                              ).paddingOnly(top: 12, left: 16)
-                            : const SizedBox(),
-                      );
-                    },
-                    itemCount: widget.githubReposState.searchResults.isNotEmpty
-                        ? widget.githubReposState.searchResults.length
-                        : 0,
-                  ),
-          ).paddingOnly(top: loadingState.isLoading ? 24 : 3),
         ],
       ).paddingOnly(top: 24, left: 16, right: 16);
-    });
   }
 }
