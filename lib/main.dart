@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:git_app/utils/app_colors.dart';
+import 'package:git_app/utils/go_router/go_router.dart';
 import 'package:git_app/utils/service_locator/get_it.dart';
 import 'view/screens/main_wrapper/main_wrapper.dart';
 
@@ -24,7 +25,9 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: router,
+
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
@@ -33,7 +36,6 @@ class App extends StatelessWidget {
         primaryColor: AppColors.primaryBlue,
         canvasColor: AppColors.mainWhite
       ),
-      home: const MainWrapper(),
     );
   }
 }

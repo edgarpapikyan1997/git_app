@@ -6,7 +6,9 @@ class GitHubRepositories {
 
   Future<List<RepositoryModel>> searchRepositories(String query) async {
     try {
+      print("QUERY IS ========> search/repositories?q=$query");
       var response = await dioClient.dio.get('search/repositories?q=$query');
+      print('RESPONSE DATA IS ==========> $response.data');
       var data = response.data['items'] as List<dynamic>;
       return data.map((repoJson) => RepositoryModel.fromJson(repoJson)).toList();
     } catch (e) {

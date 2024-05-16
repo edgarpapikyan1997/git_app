@@ -9,22 +9,6 @@ part of 'github_repos_state.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$GithubReposState on _GithubReposState, Store {
-  late final _$numberAtom =
-      Atom(name: '_GithubReposState.number', context: context);
-
-  @override
-  int get number {
-    _$numberAtom.reportRead();
-    return super.number;
-  }
-
-  @override
-  set number(int value) {
-    _$numberAtom.reportWrite(value, super.number, () {
-      super.number = value;
-    });
-  }
-
   late final _$searchResultsAtom =
       Atom(name: '_GithubReposState.searchResults', context: context);
 
@@ -73,6 +57,32 @@ mixin _$GithubReposState on _GithubReposState, Store {
     });
   }
 
+  late final _$isFavoriteAtom =
+      Atom(name: '_GithubReposState.isFavorite', context: context);
+
+  @override
+  bool get isFavorite {
+    _$isFavoriteAtom.reportRead();
+    return super.isFavorite;
+  }
+
+  @override
+  set isFavorite(bool value) {
+    _$isFavoriteAtom.reportWrite(value, super.isFavorite, () {
+      super.isFavorite = value;
+    });
+  }
+
+  late final _$addToFavoriteAsyncAction =
+      AsyncAction('_GithubReposState.addToFavorite', context: context);
+
+  @override
+  Future<void> addToFavorite(
+      {required bool isFavorite, required String query}) {
+    return _$addToFavoriteAsyncAction
+        .run(() => super.addToFavorite(isFavorite: isFavorite, query: query));
+  }
+
   late final _$searchRepositoriesAsyncAction =
       AsyncAction('_GithubReposState.searchRepositories', context: context);
 
@@ -82,15 +92,23 @@ mixin _$GithubReposState on _GithubReposState, Store {
         .run(() => super.searchRepositories(query));
   }
 
+  late final _$addToHistoryAsyncAction =
+      AsyncAction('_GithubReposState.addToHistory', context: context);
+
+  @override
+  Future<void> addToHistory(int index) {
+    return _$addToHistoryAsyncAction.run(() => super.addToHistory(index));
+  }
+
   late final _$_GithubReposStateActionController =
       ActionController(name: '_GithubReposState', context: context);
 
   @override
-  void changeNumber(int newNumber) {
+  void clear() {
     final _$actionInfo = _$_GithubReposStateActionController.startAction(
-        name: '_GithubReposState.changeNumber');
+        name: '_GithubReposState.clear');
     try {
-      return super.changeNumber(newNumber);
+      return super.clear();
     } finally {
       _$_GithubReposStateActionController.endAction(_$actionInfo);
     }
@@ -99,10 +117,10 @@ mixin _$GithubReposState on _GithubReposState, Store {
   @override
   String toString() {
     return '''
-number: ${number},
 searchResults: ${searchResults},
 searchHistory: ${searchHistory},
-searchFavorites: ${searchFavorites}
+searchFavorites: ${searchFavorites},
+isFavorite: ${isFavorite}
     ''';
   }
 }
