@@ -73,8 +73,6 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
             ),
           ),
         )
-
-
             ).paddingOnly(top: 4),);
   }
 }
