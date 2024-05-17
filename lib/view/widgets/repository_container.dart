@@ -30,6 +30,9 @@ class _RepositoryContainerState extends State<RepositoryContainer> {
 
   @override
   void initState() {
+    if(widget.isFavorite) {
+      isFavorite = true;
+    }
     super.initState();
   }
 
@@ -53,6 +56,7 @@ class _RepositoryContainerState extends State<RepositoryContainer> {
                 if(widget.isFavorite == false) {
                   setState(() {
                     isFavorite = !isFavorite;
+                    widget.repositoryModel.isFavorite = isFavorite;
                   });
                 }
                 widget.githubReposState.addToFavorite(
