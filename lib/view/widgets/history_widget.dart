@@ -8,8 +8,14 @@ class HistoryWidget extends StatelessWidget {
   final GithubReposState githubReposState;
 
   const HistoryWidget(
-      {Key? key, required this.repoModelSet, required this.githubReposState})
-      : super(key: key);
+      {super.key, required this.repoModelSet, required this.githubReposState});
+
+  Set<RepositoryModel> checkHistoryAndFavorites() {
+    var favorites = githubReposState.searchFavorites;
+    var searchedHistory = githubReposState.searchHistory;
+    Set<RepositoryModel> setOfHistory = (favorites + searchedHistory).toSet();
+    return setOfHistory;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +24,10 @@ class HistoryWidget extends StatelessWidget {
         children: [
           for (var entry in repoModelSet)
             RepositoryContainer(
-              githubReposState: githubReposState,
-              repositoryModel: entry,
-              isFavorite: false,
+                githubReposState: githubReposState,
+                repositoryModel: entry,
+                isFavorite:githubReposState.searchFavorites
+                    .any((favorite) => favorite.name == entry.name)
             ),
         ],
       ),
