@@ -43,7 +43,6 @@ abstract class _GithubReposState with Store {
   Future<void> searchRepositories(String query) async {
     var results = await GitHubRepositories().searchRepositories(query);
     searchResults = results;
-    print('LAST SEARCHED >>>>>>>>>>> $query');
   }
 
   @action
@@ -51,6 +50,5 @@ abstract class _GithubReposState with Store {
     if (searchResults.isNotEmpty) {
       searchHistory.add(searchResults[index]);
     }
-    print('LAST ADDED >>>>>>>>>>> ${searchResults[index]}');
   }
 }

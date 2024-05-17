@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:git_app/utils/app_colors.dart';
 import 'package:git_app/utils/go_router/go_router.dart';
 import 'package:git_app/utils/service_locator/get_it.dart';
-import 'view/screens/main_wrapper/main_wrapper.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
